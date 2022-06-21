@@ -1,3 +1,29 @@
+# All Note
+
+This is All Note, App for taking notes, created using ReactJS. This app is a submission from Dicoding "Belajar Membuat Aplikasi Web dengan React" Class (https://www.dicoding.com/academies/403).
+
+We can create a new note, archived it and activate it back. There is a search feature, we can search a note by its title.
+
+Hope you enjoy it 😄😄😄
+
+# Web Pages
+
+## Note Form
+
+![Note Form](https://user-images.githubusercontent.com/66102026/174737494-ecac81ea-9b0b-419a-831c-089d090fbf61.jpg)
+
+## Active Notes
+
+![Active Notes](https://user-images.githubusercontent.com/66102026/174737550-b76d8d92-dba4-4d16-bfb1-ffd62af0afdc.jpg)
+
+## Archived Notes
+
+![Archived Notes](https://user-images.githubusercontent.com/66102026/174737591-79664089-49f8-481b-a206-f4d4b416433c.jpg)
+
+## Searched Notes
+
+![Searched Notes](https://user-images.githubusercontent.com/66102026/174737613-b4805001-87ed-4093-b9d1-64fc87db59d1.jpg)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
