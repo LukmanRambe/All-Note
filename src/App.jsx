@@ -15,10 +15,11 @@ import GlobalStyle from './GlobalStyles'
 
 // Data
 import allCategories from './categories'
-import { getInitialData } from './utils'
 
 const App = () => {
-	const [notes, setNotes] = useState([])
+	const [notes, setNotes] = useState(
+		() => JSON.parse(localStorage.getItem('NOTES')) || []
+	)
 	const [categories, setCategories] = useState(allCategories)
 	const [category, setCategory] = useState(categories[0])
 	const [isFormShown, setIsFormShown] = useState(false)
@@ -30,7 +31,6 @@ const App = () => {
 	const [charLimitError, setCharLimitError] = useState(false)
 	const [isLoading, setIsLoading] = useState(true)
 	const [showBackToTop, setShowBackToTop] = useState(false)
-	const initialData = getInitialData()
 	const debouncedSearchQuery = useDebounce(searchQuery, 250)
 
 	const handleFormChange = e => {
@@ -114,8 +114,6 @@ const App = () => {
 	}, [debouncedSearchQuery, notes])
 
 	useEffect(() => {
-		setNotes(initialData)
-
 		window.addEventListener('scroll', () => {
 			if (window.scrollY > 400) {
 				setShowBackToTop(true)
@@ -125,9 +123,13 @@ const App = () => {
 		})
 	}, [])
 
+	useEffect(() => {
+		localStorage.setItem('NOTES', JSON.stringify(notes))
+	}, [notes])
+
 	return (
 		<>
-			<Navbar text='Notes App' />
+			<Navbar text='All Note' />
 			<Header
 				isFormShown={isFormShown}
 				setIsFormShown={setIsFormShown}
