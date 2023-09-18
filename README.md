@@ -1,6 +1,6 @@
 # All Note
 
-This is All Note, App for taking notes, created using ReactJS. This app is a submission from Dicoding "Belajar Membuat Aplikasi Web dengan React" Class (https://www.dicoding.com/academies/403).
+This is All Note, App for taking notes, created using ReactJS. This app is a submission from Dicoding [Belajar Membuat Aplikasi Web dengan React](https://www.dicoding.com/academies/403) online course.
 
 We can create a new note, archived it and activate it back. There is a search feature, we can search a note by its title.
 
