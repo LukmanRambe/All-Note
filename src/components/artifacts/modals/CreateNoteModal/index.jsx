@@ -1,8 +1,6 @@
-import React from 'react'
-
 // Components
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 // Styling
 import {
@@ -16,43 +14,49 @@ import {
 	CharLimit,
 	Textarea,
 	SubmitBtn,
-	CloseBtn
-} from './CreateNoteForm.styles'
+	CloseBtn,
+} from './CreateNoteModal.styles';
 
 const CreateNoteForm = ({
-	isFormShown,
-	setIsFormShown,
+	setIsModalShown,
 	formValues,
 	setFormValues,
 	handleFormSubmit,
 	handleFormChange,
 	countChar,
-	maxChar,
-	charLimitError
+	titleMaxChar,
+	bodyMaxChar,
+	charLimitError,
 }) => {
-	const handleClick = () => {
-		setIsFormShown(!isFormShown)
-		setFormValues({ title: '', body: '' })
-	}
+	const handleCloseModal = () => {
+		setIsModalShown({ value: false, type: '' });
+		setFormValues({ title: '', body: '' });
+	};
 
 	return (
-		<Wrapper>
+		<Wrapper onClick={handleCloseModal}>
 			<Content>
-				<Form onSubmit={e => handleFormSubmit(e)}>
+				<Form onClick={(e) => e.stopPropagation()} onSubmit={(e) => handleFormSubmit(e)}>
 					<Title>Note Form</Title>
+
 					<InputGroup>
 						<Label>Title</Label>
+
 						<Input
+							type='text'
+							aria-label='title'
 							placeholder='Title'
 							name='title'
 							value={formValues.title}
 							onChange={handleFormChange}
 							autoFocus
 						/>
-						<CharLimit className={charLimitError ? 'error' : ''}>
-							{`${countChar}/${maxChar} Max Characters`}
-						</CharLimit>
+						<CharLimit
+							className={
+								charLimitError.title && 'error'
+							}>{`${countChar.title}/${titleMaxChar} Max Characters`}</CharLimit>
 					</InputGroup>
+
 					<InputGroup>
 						<Label>Notes</Label>
 						<Textarea
@@ -63,15 +67,19 @@ const CreateNoteForm = ({
 							value={formValues.body}
 							onChange={handleFormChange}
 						/>
+						<CharLimit
+							className={charLimitError.body && 'error'}>{`${countChar.body}/${bodyMaxChar} Max Characters`}</CharLimit>
 					</InputGroup>
+
 					<SubmitBtn>Create Note</SubmitBtn>
-					<CloseBtn onClick={handleClick}>
+
+					<CloseBtn onClick={handleCloseModal}>
 						<FontAwesomeIcon icon={faXmark} />
 					</CloseBtn>
 				</Form>
 			</Content>
 		</Wrapper>
-	)
-}
+	);
+};
 
-export default CreateNoteForm
+export default CreateNoteForm;

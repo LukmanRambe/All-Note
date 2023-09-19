@@ -1,5 +1,5 @@
 // Styling
-import { Wrapper, Content, Text } from './EmptyNotes.styles'
+import { Wrapper, Content, Text } from './EmptyNotes.styles';
 
 const EmptyNotes = ({ text }) => {
 	return (
@@ -8,7 +8,7 @@ const EmptyNotes = ({ text }) => {
 				<Text>{text}</Text>
 			</Content>
 		</Wrapper>
-	)
-}
+	);
+};
 
-export default EmptyNotes
+export default EmptyNotes;

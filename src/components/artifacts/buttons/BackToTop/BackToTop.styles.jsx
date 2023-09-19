@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	position: fixed;
@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 		bottom: 1.5rem;
 		right: 1rem;
 	}
-`
+`;
 
 export const Content = styled.div`
 	cursor: pointer;
@@ -36,4 +36,4 @@ export const Content = styled.div`
 		background: var(--white);
 		border: 2px solid var(--black);
 	}
-`
+`;

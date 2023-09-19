@@ -1,7 +1,5 @@
-import React from 'react'
-
 // Styling
-import { Wrapper, Content, Option } from './Category.styles'
+import { Wrapper, Content, Option } from './Category.styles';
 
 const Category = ({ category, categories, setCategory }) => {
 	return (
@@ -11,15 +9,15 @@ const Category = ({ category, categories, setCategory }) => {
 					return (
 						<Option
 							key={id}
-							className={category.id === id ? 'active' : ''}
+							className={category.id === id && 'active'}
 							onClick={() => setCategory({ id, archived, text })}>
 							{text}
 						</Option>
-					)
+					);
 				})}
 			</Content>
 		</Wrapper>
-	)
-}
+	);
+};
 
-export default Category
+export default Category;
