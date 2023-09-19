@@ -131,9 +131,9 @@ const App = () => {
 	}, [formValues.title, formValues.body]);
 
 	useEffect(() => {
-		const newNotes = notes.filter((note) => note.title.toLowerCase().includes(searchQuery.trim()));
+		const newNotes = notes.filter((note) => note.title.toLowerCase().includes(debouncedSearchQuery.trim()));
 
-		if (searchQuery === '') {
+		if (debouncedSearchQuery === '') {
 			setSearchedNotes([]);
 		} else {
 			setIsLoading(true);
@@ -163,7 +163,7 @@ const App = () => {
 			text='All Note'
 			searchQuery={searchQuery}
 			handleSearchChange={handleSearchChange}>
-			{isModalShown.value && isModalShown.type == 'create' && (
+			{isModalShown.value && isModalShown.type === 'create' && (
 				<CreateNoteModal
 					setIsModalShown={setIsModalShown}
 					formValues={formValues}
