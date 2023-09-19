@@ -1,9 +1,14 @@
-import React from 'react'
+import { useState } from 'react';
 
 // Components
-import Category from '../Category'
-import ActionButton from '../ActionButton'
-import DeleteButton from '../DeleteButton'
+import Category from '../Category';
+import ActionButton from '../artifacts/buttons/ActionButton';
+import DeleteButton from '../artifacts/buttons/DeleteButton';
+import EmptyNotes from '../EmptyNotes';
+import NoteDetailModal from '../artifacts/modals/NoteDetailModal';
+import DeleteNoteModal from '../artifacts/modals/DeleteNoteModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
 
 // Styling
 import {
@@ -14,16 +19,17 @@ import {
 	AllNotes,
 	Note,
 	NoteDetail,
+	NoteDetailHeader,
+	DetailButton,
 	CreatedAt,
 	NoteTitle,
 	NoteText,
 	Actions,
-	Loader
-} from './Notes.styles'
+	Loader,
+} from './Notes.styles';
 
 // Utils
-import { showFormattedDate } from '../../utils'
-import EmptyNotes from '../EmptyNotes'
+import { formatDate } from '../../utils/formatDate';
 
 const Notes = ({
 	notes,
@@ -34,24 +40,44 @@ const Notes = ({
 	searchedNotes,
 	searchQuery,
 	changeArchiveStatus,
+	isModalShown,
+	setIsModalShown,
 	deleteNote,
-	isLoading
+	isLoading,
 }) => {
+	const [noteData, setNoteData] = useState({});
+	const [noteId, setNoteId] = useState('');
+
+	const handleOpenModal = (data) => {
+		setNoteData(data);
+		setIsModalShown({ value: true, type: 'detail' });
+	};
+
 	const allNotesArray =
 		searchQuery.trim() !== ''
-			? searchedNotes.filter(note => note.archived === category.archived)
-			: notes.filter(note => note.archived === category.archived)
+			? searchedNotes.filter((note) => note.archived === category.archived)
+			: notes.filter((note) => note.archived === category.archived);
 
-	const allNotes = allNotesArray.map(note => {
-		const { id, title, createdAt, body, archived } = note
+	const allNotes = allNotesArray.map((note) => {
+		const { id, title, createdAt, body, archived } = note;
 
 		return (
 			<Note key={id} id={id}>
 				<NoteDetail>
-					<NoteTitle>{title}</NoteTitle>
-					<CreatedAt>{showFormattedDate(createdAt)}</CreatedAt>
+					<NoteDetailHeader>
+						<div>
+							<NoteTitle>{title}</NoteTitle>
+							<CreatedAt>{formatDate(createdAt)}</CreatedAt>
+						</div>
+
+						<DetailButton onClick={() => handleOpenModal(note)} title={`Note Detail - ${title}`}>
+							<FontAwesomeIcon icon={faInfo} className='icon' />
+						</DetailButton>
+					</NoteDetailHeader>
+
 					<NoteText>{body}</NoteText>
 				</NoteDetail>
+
 				<Actions>
 					<ActionButton
 						id={id}
@@ -59,11 +85,11 @@ const Notes = ({
 						text={archived ? 'Activate' : 'Archive'}
 						changeArchiveStatus={changeArchiveStatus}
 					/>
-					<DeleteButton id={id} text='Delete' deleteNote={deleteNote} />
+					<DeleteButton noteId={id} text='Delete' setIsModalShown={setIsModalShown} setNoteId={setNoteId} />
 				</Actions>
 			</Note>
-		)
-	})
+		);
+	});
 
 	return (
 		<Wrapper>
@@ -77,18 +103,34 @@ const Notes = ({
 						setCategory={setCategory}
 					/>
 				</NotesListHeader>
+
 				{isLoading ? (
 					<Loader>
-						<span className='loader'></span>
+						<span className='loader' />
 					</Loader>
 				) : allNotes === null || allNotes.length === 0 ? (
 					<EmptyNotes text="There's No Note" />
 				) : (
-					<AllNotes>{allNotes}</AllNotes>
+					<>
+						<AllNotes>{allNotes}</AllNotes>
+
+						{isModalShown.value && isModalShown.type === 'detail' && (
+							<NoteDetailModal setIsModalShown={setIsModalShown} data={noteData} setNoteData={setNoteData} />
+						)}
+
+						{isModalShown.value && isModalShown.type === 'delete' && (
+							<DeleteNoteModal
+								noteId={noteId}
+								setNoteId={setNoteId}
+								deleteNote={deleteNote}
+								setIsModalShown={setIsModalShown}
+							/>
+						)}
+					</>
 				)}
 			</Content>
 		</Wrapper>
-	)
-}
+	);
+};
 
-export default Notes
+export default Notes;

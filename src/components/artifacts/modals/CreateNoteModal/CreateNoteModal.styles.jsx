@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	top: 0;
@@ -6,18 +6,17 @@ export const Wrapper = styled.div`
 	position: fixed;
 	height: 100%;
 	width: 100%;
-`
+`;
 
-export const Content = styled.div`
+export const Content = styled.article`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	padding: 0 1.5rem;
 	background: rgba(0, 0, 0, 0.4);
-`
+`;
 
 export const Form = styled.form`
 	display: flex;
@@ -29,23 +28,24 @@ export const Form = styled.form`
 	background: var(--white);
 	border-radius: 0.4rem;
 	padding: 0 3rem;
-	width: 100%;
-	height: 100%;
-	max-width: 32rem;
-	max-height: 37rem;
+	min-width: 35rem;
+	max-width: 40rem;
+	min-height: 35rem;
+	max-height: 40rem;
 
 	@media only screen and (max-width: 600px) {
-		padding: 0 1.2rem;
-		max-width: 30rem;
+		padding: 10rem 1.2rem;
+		width: calc(100% - 1.25rem);
 		max-height: 35rem;
 	}
 
-	@media only screen and (max-width: 360px) {
-		padding: 0 1rem;
-		max-height: 26rem;
-		gap: 0.5rem;
+	@media only screen and (max-width: 375px) {
+		padding: 2rem 1rem;
+		width: calc(100% - 1.25rem);
+		min-height: 25rem;
+		max-height: 27rem;
 	}
-`
+`;
 
 export const Title = styled.h3`
 	font-size: 1.7rem;
@@ -56,13 +56,13 @@ export const Title = styled.h3`
 		font-size: 1.4rem;
 		margin-bottom: 0.2rem;
 	}
-`
+`;
 
-export const InputGroup = styled.div`
+export const InputGroup = styled.article`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-`
+`;
 
 export const Label = styled.h5`
 	font-size: 1rem;
@@ -72,7 +72,7 @@ export const Label = styled.h5`
 	@media only screen and (max-width: 360px) {
 		font-size: 0.9rem;
 	}
-`
+`;
 
 export const Input = styled.input`
 	width: 100%;
@@ -86,7 +86,7 @@ export const Input = styled.input`
 		transition: all 0.15s ease-in-out;
 		border: 2px solid var(--black);
 	}
-`
+`;
 
 export const CharLimit = styled.span`
 	font-size: 0.7rem;
@@ -98,7 +98,7 @@ export const CharLimit = styled.span`
 	&.error {
 		color: var(--red);
 	}
-`
+`;
 
 export const Textarea = styled.textarea`
 	width: 100%;
@@ -117,7 +117,7 @@ export const Textarea = styled.textarea`
 	@media only screen and (max-width: 360px) {
 		height: 9rem;
 	}
-`
+`;
 
 export const SubmitBtn = styled.button`
 	cursor: pointer;
@@ -143,7 +143,7 @@ export const SubmitBtn = styled.button`
 	@media only screen and (max-width: 360px) {
 		margin-top: 1.2rem;
 	}
-`
+`;
 
 export const CloseBtn = styled.span`
 	cursor: pointer;
@@ -170,4 +170,4 @@ export const CloseBtn = styled.span`
 		top: 0.5rem;
 		right: 1.2rem;
 	}
-`
+`;
