@@ -1,14 +1,11 @@
-import React from 'react';
+import { Content, Logo, Text, Wrapper } from '../../../styles/Navbar.styles';
 
-// Styling
-import { Wrapper, Content, Logo, Text } from './Navbar.styles';
-
-const Navbar = ({ text }) => {
+const Navbar = () => {
 	return (
 		<Wrapper>
 			<Content>
-				<Logo src='assets/icons/notes.png' alt='Logo' />
-				<Text>{text}</Text>
+				<Logo src='/assets/icons/notes.png' alt='Logo' />
+				<Text to='/'>All Note</Text>
 			</Content>
 		</Wrapper>
 	);

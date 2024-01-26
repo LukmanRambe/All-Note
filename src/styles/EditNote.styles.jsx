@@ -1,21 +1,39 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-	top: 0;
-	left: 0;
-	position: fixed;
-	height: 100%;
-	width: 100%;
+	padding: 1.5rem 5rem;
+
+	@media only screen and (max-width: 1024px) {
+		padding: 1.5rem 3rem;
+	}
+
+	@media only screen and (max-width: 600px) {
+		padding: 1.5rem 1rem;
+	}
 `;
 
 export const Content = styled.article`
+	width: 100%;
+`;
+
+export const Header = styled.section`
+	display: flex;
+	justify-content: space-between;
+
+	:after {
+		content: '';
+	}
+
+	@media only screen and (max-width: 600px) {
+		flex-direction: column;
+	}
+`;
+
+export const FormWrapper = styled.section`
+	width: 100%;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background: rgba(0, 0, 0, 0.4);
 `;
 
 export const Form = styled.form`
@@ -23,34 +41,19 @@ export const Form = styled.form`
 	gap: 1rem;
 	position: relative;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	align-self: center;
 	background: var(--white);
 	border-radius: 0.4rem;
-	padding: 0 3rem;
-	min-width: 35rem;
-	max-width: 40rem;
-	min-height: 35rem;
-	max-height: 40rem;
-
-	@media only screen and (max-width: 600px) {
-		padding: 10rem 1.2rem;
-		width: calc(100% - 1.25rem);
-		max-height: 35rem;
-	}
-
-	@media only screen and (max-width: 375px) {
-		padding: 2rem 1rem;
-		width: calc(100% - 1.25rem);
-		min-height: 25rem;
-		max-height: 27rem;
-	}
+	width: 100%;
+	margin-top: 2rem;
+	max-width: 50rem;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h2`
 	font-size: 1.7rem;
 	margin-bottom: 0.5rem;
 	font-weight: 700;
+	text-align: center;
 
 	@media only screen and (max-width: 360px) {
 		font-size: 1.4rem;
@@ -119,10 +122,44 @@ export const Textarea = styled.textarea`
 	}
 `;
 
+export const ActionButtons = styled.article`
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 100%;
+	gap: 2rem;
+`;
+
+export const CancelBtn = styled(Link)`
+	cursor: pointer;
+	width: fit-content;
+	padding: 0.7rem;
+	border-radius: 0.4rem;
+	margin-top: 1.5rem;
+	font-size: 1rem;
+	color: var(--light-blue);
+	background: transparent;
+	border: 2px solid transparent;
+	font-weight: 700;
+	text-decoration: none;
+	text-align: center;
+
+	:hover,
+	:active,
+	:focus {
+		transition: all 0.15s ease-in-out;
+		color: var(--dark-blue);
+	}
+
+	@media only screen and (max-width: 360px) {
+		margin-top: 1.2rem;
+	}
+`;
+
 export const SubmitBtn = styled.button`
 	cursor: pointer;
-	width: 100%;
-	padding: 0.7rem;
+	width: fit-content;
+	padding: 0.7rem 3rem;
 	border-radius: 0.4rem;
 	margin-top: 1.5rem;
 	font-size: 1rem;
@@ -130,6 +167,7 @@ export const SubmitBtn = styled.button`
 	background: var(--black);
 	border: 2px solid transparent;
 	font-weight: 700;
+	text-align: center;
 
 	:hover,
 	:active,
@@ -145,29 +183,18 @@ export const SubmitBtn = styled.button`
 	}
 `;
 
-export const CloseBtn = styled.span`
+export const BackBtn = styled(Link)`
+	display: block;
 	cursor: pointer;
-	color: var(--grey);
-	padding: 0.2rem;
-	position: absolute;
-	top: 1rem;
-	right: 2.5rem;
-	font-size: 1.2rem;
+	color: var(--dark-grey);
+	font-size: 1rem;
+	margin-bottom: 1rem;
+	text-decoration: none;
 
 	:hover,
 	:focus,
 	:active {
 		transition: all 0.15s ease-in-out;
 		color: var(--black);
-	}
-
-	@media only screen and (max-width: 600px) {
-		top: 0.7rem;
-		right: 1.5rem;
-	}
-
-	@media only screen and (max-width: 360px) {
-		top: 0.5rem;
-		right: 1.2rem;
 	}
 `;

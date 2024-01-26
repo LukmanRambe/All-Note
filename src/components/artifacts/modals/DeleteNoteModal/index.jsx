@@ -1,9 +1,17 @@
-// Component
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamation } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
-// Styling
-import { Wrapper, Content, Warn, Copywrite, ActionButtons, CancelButton, DeleteButton } from './DeleteNoteModal.styles';
+import { faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import {
+	ActionButtons,
+	CancelButton,
+	Content,
+	Copywrite,
+	DeleteButton,
+	Warn,
+	Wrapper,
+} from '../../../../styles/DeleteNoteModal.styles';
 
 const DeleteNoteModal = ({ noteId, setNoteId, setIsModalShown, deleteNote }) => {
 	const handleCloseModal = () => {
@@ -37,6 +45,13 @@ const DeleteNoteModal = ({ noteId, setNoteId, setIsModalShown, deleteNote }) => 
 			</Content>
 		</Wrapper>
 	);
+};
+
+DeleteNoteModal.propTypes = {
+	noteId: PropTypes.string,
+	setNoteId: PropTypes.func,
+	setIsModalShown: PropTypes.func,
+	deleteNote: PropTypes.func,
 };
 
 export default DeleteNoteModal;

@@ -1,16 +1,7 @@
-// Styling
-import { Button } from './CreateButton.styles';
+import { Button } from '../../../../styles/CreateButton.styles';
 
-const CreateButton = ({ text, setIsModalShown }) => {
-	const handleOpenModal = () => {
-		setIsModalShown({ value: true, type: 'create' });
-	};
-
-	return (
-		<Button type='button' onClick={handleOpenModal}>
-			{text}
-		</Button>
-	);
+const CreateButton = () => {
+	return <Button to='/create'>Create a New Note</Button>;
 };
 
 export default CreateButton;

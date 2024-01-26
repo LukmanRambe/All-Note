@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.article`
@@ -14,14 +15,16 @@ export const Content = styled.article`
 	}
 `;
 
-export const Option = styled.article`
+export const Option = styled(Link)`
 	padding: 0.5rem 1rem;
 	font-size: 0.9rem;
 	border: 2px solid transparent;
 	border-radius: 0.5rem;
 	color: var(--black);
+	background: transparent;
 	font-weight: 700;
 	text-align: center;
+	text-decoration: none;
 
 	:hover {
 		cursor: pointer;

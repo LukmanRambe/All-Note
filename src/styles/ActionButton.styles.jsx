@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
 	cursor: pointer;
-	padding: 0.6rem 0;
+	padding: 0.6rem 1.5rem;
 	color: var(--white);
-	background: var(--red);
 	border-radius: 0.4rem;
-	font-size: 0.9rem;
+	font-size: 1rem;
 	font-weight: 700;
 	letter-spacing: 0.05em;
 	border: 2px solid transparent;
@@ -17,9 +16,30 @@ export const Button = styled.button`
 	:active {
 		outline: 0;
 		transition: all 0.15s ease-in-out;
-		color: var(--red);
-		background: var(--white);
-		border: 2px solid var(--red);
+	}
+
+	&.activate {
+		background: var(--green);
+
+		:hover,
+		:focus,
+		:active {
+			color: var(--green);
+			background: var(--white);
+			border: 2px solid var(--green);
+		}
+	}
+
+	&.archive {
+		background: var(--yellow);
+
+		:hover,
+		:focus,
+		:active {
+			color: var(--yellow);
+			background: var(--white);
+			border: 2px solid var(--yellow);
+		}
 	}
 
 	@media only screen and (max-width: 600px) {

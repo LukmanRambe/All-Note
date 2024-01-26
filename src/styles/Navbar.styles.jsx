@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.nav`
@@ -27,8 +28,11 @@ export const Logo = styled.img`
 	margin-top: 0.2rem;
 `;
 
-export const Text = styled.h1`
+export const Text = styled(Link)`
+	color: var(--white);
+	font-weight: 600;
 	font-size: 2rem;
+	text-decoration: none;
 
 	@media only screen and (max-width: 600px) {
 		font-size: 1.7rem;
