@@ -9,6 +9,7 @@ export const Content = styled.article`
 	display: flex;
 	justify-content: flex-end;
 	gap: 0.5rem;
+	color: ${(props) => props.theme.colors.text};
 
 	@media only screen and (max-width: 600px) {
 		justify-content: center;
@@ -20,7 +21,7 @@ export const Option = styled(Link)`
 	font-size: 0.9rem;
 	border: 2px solid transparent;
 	border-radius: 0.5rem;
-	color: var(--black);
+	color: ${(props) => props.theme.colors['category-text']};
 	background: transparent;
 	font-weight: 700;
 	text-align: center;
@@ -28,13 +29,13 @@ export const Option = styled(Link)`
 
 	:hover {
 		cursor: pointer;
-		color: var(--white);
-		background: var(--dark-grey);
+		color: ${(props) => props.theme.colors['category-text-hover']};
+		background: ${(props) => props.theme.colors['category-background-hover']};
 	}
 
 	&.active {
-		color: var(--white);
-		background: var(--black);
+		color: ${(props) => props.theme.colors['category-text-active']};
+		background: ${(props) => props.theme.colors['category-background']};
 	}
 
 	@media only screen and (max-width: 600px) {

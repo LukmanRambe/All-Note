@@ -47,8 +47,8 @@ export const BackToHome = styled(Link)`
 	font-size: 1rem;
 	font-size: 400;
 	letter-spacing: 0.01rem;
-	color: var(--white);
-	background: var(--black);
+	color: ${(props) => props.theme.colors.color};
+	background: ${(props) => props.theme.colors.background};
 	border: 2px solid transparent;
 	text-decoration: none;
 	outline: 0;
@@ -59,9 +59,9 @@ export const BackToHome = styled(Link)`
 	:hover,
 	:active,
 	:focus {
-		color: var(--black);
-		background: var(--white);
-		border: 2px solid var(--black);
+		color: ${(props) => props.theme.colors.background};
+		background: ${(props) => props.theme.colors.color};
+		border: 2px solid ${(props) => props.theme.colors.background};
 		transition: all ease-in-out 0.15s;
 	}
 `;

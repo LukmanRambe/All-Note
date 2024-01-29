@@ -32,6 +32,7 @@ export const Title = styled.h2`
 	margin-top: 2rem;
 	font-size: 1.7rem;
 	width: 100%;
+	color: ${(props) => props.theme.colors.text};
 
 	@media only screen and (max-width: 600px) {
 		margin-top: 0rem;
@@ -73,7 +74,7 @@ export const Loader = styled.div`
 		position: absolute;
 		inset: 0px;
 		border-radius: 50%;
-		border: 5px solid var(--black);
+		border: 5px solid ${(props) => props.theme.colors.background};
 		animation: prixClipFix 1.2s linear infinite;
 	}
 

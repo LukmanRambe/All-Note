@@ -4,8 +4,8 @@ import styled from 'styled-components';
 export const Button = styled(Link)`
 	cursor: pointer;
 	padding: 0.5rem 1.5rem;
-	color: var(--white);
-	background: var(--black);
+	color: ${(props) => props.theme.colors['button-text']};
+	background: ${(props) => props.theme.colors['button-background']};
 	font-size: 1rem;
 	font-weight: 700;
 	letter-spacing: 0.01em;
@@ -17,8 +17,8 @@ export const Button = styled(Link)`
 	:active,
 	:focus {
 		transition: all 0.15s ease-in-out;
-		color: var(--black);
-		background: var(--white);
-		border: 2px solid var(--black);
+		color: ${(props) => props.theme.colors['button-text-hover']};
+		background: ${(props) => props.theme.colors['button-background-hover']};
+		border: 2px solid ${(props) => props.theme.colors['button-background']};
 	}
 `;

@@ -2,8 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    --white: #fefefe;
-    --black: #010101;
     --grey: #c6c7ce;
     --light-grey: #E8EbED;
     --dark-grey: #626362;
@@ -26,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
   
   body {
     font-family: 'Rubik', sans-serif;
+    background: ${(props) => props.theme.colors.background};
   }
 `;
 

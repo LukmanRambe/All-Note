@@ -35,6 +35,11 @@ export const Title = styled.h2`
 	margin-bottom: 0.5rem;
 	font-weight: 700;
 	text-align: center;
+	word-break: break-all;
+	color: ${(props) => props.theme.colors.text};
+	text-transform: capitalize;
+	width: 100%;
+	max-width: 30rem;
 
 	@media only screen and (max-width: 360px) {
 		font-size: 1.4rem;
@@ -54,7 +59,7 @@ export const BackBtn = styled(Link)`
 	:focus,
 	:active {
 		transition: all 0.15s ease-in-out;
-		color: var(--black);
+		color: var(--grey);
 	}
 `;
 
@@ -70,6 +75,8 @@ export const Body = styled.p`
 	max-width: 50rem;
 	line-height: 1.5rem;
 	letter-spacing: 0.01rem;
+	color: ${(props) => props.theme.colors.text};
+	word-break: break-all;
 `;
 
 export const ActionsButtons = styled.div`
@@ -79,32 +86,4 @@ export const ActionsButtons = styled.div`
 	width: fit-content;
 	bottom: 2rem;
 	right: 2rem;
-`;
-
-export const EditButton = styled(Link)`
-	cursor: pointer;
-	padding: 0.6rem 1.5rem;
-	color: var(--white);
-	background: var(--light-blue);
-	border-radius: 0.4rem;
-	font-size: 1rem;
-	font-weight: 700;
-	letter-spacing: 0.05em;
-	border: 2px solid transparent;
-	width: 100%;
-	text-decoration: none;
-
-	:hover,
-	:focus,
-	:active {
-		outline: 0;
-		transition: all 0.15s ease-in-out;
-		color: var(--dark-blue);
-		background: var(--white);
-		border: 2px solid var(--dark-blue);
-	}
-
-	@media only screen and (max-width: 600px) {
-		font-size: 0.8rem;
-	}
 `;

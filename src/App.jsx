@@ -1,13 +1,18 @@
-// Components
-import ActiveNotes from './pages';
-import ArchivedNotes from './pages/archive';
-import DetailNote from './pages/detail';
-
-// Data
 import { BrowserRouter, useRoutes } from 'react-router-dom';
-import Layout from './components/Layout';
+
+// Components
+import AuthLayout from './components/Layout/auth';
+import Layout from './components/Layout/main';
+import AuthContextProvider from './components/context/AuthContext';
+import LanguageContextProvider from './components/context/LanguageContext';
+import ThemeContextProvider from './components/context/ThemeContext';
+import ActiveNotes from './pages';
 import NotFound from './pages/404';
+import ArchivedNotes from './pages/archive';
+import Login from './pages/auth/login';
+import Register from './pages/auth/register';
 import CreateNote from './pages/create';
+import DetailNote from './pages/detail';
 import EditNote from './pages/edit';
 
 const App = () => {
@@ -45,11 +50,36 @@ const App = () => {
 					},
 				],
 			},
+			{
+				path: '/auth',
+				element: <AuthLayout />,
+				children: [
+					{
+						path: 'login',
+						index: true,
+						element: <Login />,
+					},
+					{
+						path: 'register',
+						element: <Register />,
+					},
+					{
+						path: '*',
+						element: <NotFound />,
+					},
+				],
+			},
 		]);
 
 	return (
 		<BrowserRouter>
-			<Routes />
+			<AuthContextProvider>
+				<ThemeContextProvider>
+					<LanguageContextProvider>
+						<Routes />
+					</LanguageContextProvider>
+				</ThemeContextProvider>
+			</AuthContextProvider>
 		</BrowserRouter>
 	);
 };

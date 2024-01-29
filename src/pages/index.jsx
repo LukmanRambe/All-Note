@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useOutletContext } from 'react-router-dom';
 
@@ -8,10 +8,12 @@ import Header from '../components/main/Header';
 import NoteCard from '../components/main/NoteCard';
 
 import { AllNotes, Content, Loader, NotesListHeader, Title, Wrapper } from '../styles/NoteList.styles';
+import { getActiveNotes } from '../utils/data';
 
 const ActiveNotes = () => {
+	const [notes, setNotes] = useState();
+
 	const {
-		changeArchiveStatus,
 		category,
 		setCategory,
 		setIsModalShown,
@@ -20,14 +22,11 @@ const ActiveNotes = () => {
 		setIsLoading,
 		searchParams,
 		setSearchParams,
-		notes,
 		searchResults,
 		setSearchResults,
 	} = useOutletContext();
 
-	const activeNotes = searchParams.get('search')
-		? searchResults.filter((note) => !note.archived)
-		: notes.filter((note) => !note.archived);
+	const activeNotes = searchParams.get('search') ? searchResults.filter((note) => !note.archived) : notes;
 
 	const handleSearch = useCallback(
 		(title) => {
@@ -39,6 +38,14 @@ const ActiveNotes = () => {
 	useEffect(() => {
 		setIsLoading(false);
 	}, [setIsLoading]);
+
+	useEffect(() => {
+		getActiveNotes().then((response) => {
+			if (!response.error) {
+				setNotes(response.data);
+			}
+		});
+	}, []);
 
 	return (
 		<Wrapper>
@@ -76,7 +83,6 @@ const ActiveNotes = () => {
 										createdAt={note.createdAt}
 										body={note.body}
 										archived={note.archived}
-										changeArchiveStatus={changeArchiveStatus}
 										setNoteId={setNoteId}
 										setIsModalShown={setIsModalShown}
 									/>

@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { LanguageContext } from '../../components/context/LanguageContext';
 import {
 	BackBtn,
 	CharLimit,
@@ -20,10 +21,11 @@ import {
 	Title,
 	Wrapper,
 } from '../../styles/CreateNote.styles';
+import { addNote } from '../../utils/data';
 
 const CreateNote = () => {
+	const { languageSets } = useContext(LanguageContext);
 	const navigate = useNavigate();
-	const { setNotes } = useOutletContext();
 
 	const titleMaxChar = 50;
 	const [countChar, setCountChar] = useState({
@@ -47,19 +49,17 @@ const CreateNote = () => {
 		e.preventDefault();
 
 		const noteObject = {
-			id: `notes-${new Date().getTime().toString()}`,
 			title: formValues.title.slice(0, titleMaxChar) || '(untitled)',
 			body: formValues.body,
-			createdAt: new Date().toISOString(),
-			archived: false,
 		};
 
 		if (formValues.title !== '' && formValues.body !== '') {
-			setNotes((oldNotes) => {
-				return [noteObject, ...oldNotes];
+			addNote(noteObject).then((response) => {
+				if (!response?.error) {
+					setFormValues({ title: '', body: '' });
+					navigate('/');
+				}
 			});
-			setFormValues({ title: '', body: '' });
-			navigate('/');
 		}
 	};
 
@@ -90,21 +90,21 @@ const CreateNote = () => {
 			<Content>
 				<Header>
 					<BackBtn onClick={() => navigate(-1)}>
-						<FontAwesomeIcon icon={faArrowLeft} /> Back
+						<FontAwesomeIcon icon={faArrowLeft} /> {languageSets.buttons.title.back}
 					</BackBtn>
 
-					<Title>Create New Note</Title>
+					<Title>{languageSets.createNote.title}</Title>
 				</Header>
 
 				<FormWrapper>
 					<Form onClick={(e) => e.stopPropagation()} onSubmit={(e) => handleFormSubmit(e)}>
 						<InputGroup>
-							<Label>Title</Label>
+							<Label>{languageSets.createNote.inputs.title}</Label>
 
 							<Input
 								type='text'
 								aria-label='title'
-								placeholder='Title'
+								placeholder={languageSets.createNote.inputs.title}
 								name='title'
 								value={formValues.title}
 								onChange={handleFormChange}
@@ -113,13 +113,13 @@ const CreateNote = () => {
 							<CharLimit
 								className={
 									charLimitError.title && 'error'
-								}>{`${countChar.title}/${titleMaxChar} Max Characters`}</CharLimit>
+								}>{`${countChar.title}/${titleMaxChar} ${languageSets.createNote.maxChar}`}</CharLimit>
 						</InputGroup>
 
 						<InputGroup>
-							<Label>Notes</Label>
+							<Label>{languageSets.createNote.inputs.notes}</Label>
 							<Textarea
-								placeholder='Write Your Notes Here...'
+								placeholder={languageSets.createNote.inputs.textareaPlaceholder}
 								cols='30'
 								rows='15'
 								name='body'
@@ -128,7 +128,7 @@ const CreateNote = () => {
 							/>
 						</InputGroup>
 
-						<SubmitBtn>Create Note</SubmitBtn>
+						<SubmitBtn>{languageSets.createNote.button}</SubmitBtn>
 					</Form>
 				</FormWrapper>
 			</Content>

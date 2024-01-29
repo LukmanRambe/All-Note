@@ -12,5 +12,5 @@ export const Content = styled.article`
 export const Text = styled.p`
 	font-size: 1rem;
 	text-align: center;
-	color: var(--black);
+	color: ${(props) => props.theme.colors.text};
 `;

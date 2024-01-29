@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -7,8 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Content, Input, SearchIcon, Wrapper } from '../../../styles/SearchNotes.stlyles';
 
 import { useDebounce } from '../../../hooks/useDebounce';
+import { LanguageContext } from '../../context/LanguageContext';
 
 const SearchNotes = ({ searchParams, setSearchParams, setIsLoading, handleSearch }) => {
+	const { languageSets } = useContext(LanguageContext);
 	const title = searchParams.get('search');
 	const debounce = useDebounce(title, 250);
 
@@ -41,7 +43,7 @@ const SearchNotes = ({ searchParams, setSearchParams, setIsLoading, handleSearch
 				<Input
 					type='search'
 					aria-label='search'
-					placeholder='Search Note by Title'
+					placeholder={languageSets.header.searchBar}
 					value={title || ''}
 					onChange={handleSearchChange}
 				/>

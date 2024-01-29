@@ -8,7 +8,8 @@ export const Note = styled.article`
 	padding: 1.25rem;
 	height: 22rem;
 	border: 2px solid black;
-	border-radius: 0.4rem;
+	border-radius: 0.7rem;
+	background: ${(props) => props.theme.colors['card-background']};
 `;
 
 export const NoteDetail = styled.article`
@@ -37,13 +38,15 @@ export const CreatedAt = styled.span`
 `;
 
 export const NoteTitle = styled(Link)`
-	color: var(--black);
+	color: ${(props) => props.theme.colors['card-text']};
 	font-size: 1.4rem;
-	margin-bottom: 0.4rem;
-	word-wrap: break-word;
+	word-break: break-all;
 	font-weight: 700;
 	text-transform: capitalize;
+	margin-bottom: 0.5rem;
 	display: -webkit-box;
+	line-height: 1.5rem;
+	letter-spacing: 0.04rem;
 	width: fit-content;
 	overflow: hidden;
 	text-decoration: underline;
@@ -51,17 +54,19 @@ export const NoteTitle = styled(Link)`
 	-webkit-box-orient: vertical;
 
 	:hover {
-		color: var(--dark-blue);
+		color: ${(props) => props.theme.colors['card-text']};
 		transition: all ease-in-out 0.15s;
 	}
 `;
 
 export const NoteText = styled.p`
+	color: ${(props) => props.theme.colors['card-text']};
 	font-size: 1rem;
 	font-weight: 400;
-	letter-spacing: 0.01em;
 	margin-top: 1rem;
-	word-wrap: break-word;
+	word-break: break-all;
+	line-height: 1.25rem;
+	letter-spacing: 0.04rem;
 	display: -webkit-box;
 	width: 100%;
 	overflow: hidden;

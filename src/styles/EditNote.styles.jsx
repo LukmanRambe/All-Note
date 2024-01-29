@@ -42,7 +42,7 @@ export const Form = styled.form`
 	position: relative;
 	flex-direction: column;
 	align-self: center;
-	background: var(--white);
+	background: ${(props) => props.theme.colors.color};
 	border-radius: 0.4rem;
 	width: 100%;
 	margin-top: 2rem;
@@ -87,7 +87,7 @@ export const Input = styled.input`
 	:active {
 		outline: none;
 		transition: all 0.15s ease-in-out;
-		border: 2px solid var(--black);
+		border: 2px solid ${(props) => props.theme.colors.background};
 	}
 `;
 
@@ -114,7 +114,7 @@ export const Textarea = styled.textarea`
 	:active {
 		outline: none;
 		transition: all 0.15s ease-in-out;
-		border: 2px solid var(--black);
+		border: 2px solid ${(props) => props.theme.colors.background};
 	}
 
 	@media only screen and (max-width: 360px) {
@@ -163,8 +163,8 @@ export const SubmitBtn = styled.button`
 	border-radius: 0.4rem;
 	margin-top: 1.5rem;
 	font-size: 1rem;
-	color: var(--white);
-	background: var(--black);
+	color: ${(props) => props.theme.colors.color};
+	background: ${(props) => props.theme.colors.background};
 	border: 2px solid transparent;
 	font-weight: 700;
 	text-align: center;
@@ -173,9 +173,9 @@ export const SubmitBtn = styled.button`
 	:active,
 	:focus {
 		transition: all 0.15s ease-in-out;
-		color: var(--black);
-		background: var(--white);
-		border: 2px solid var(--black);
+		color: ${(props) => props.theme.colors.background};
+		background: ${(props) => props.theme.colors.color};
+		border: 2px solid ${(props) => props.theme.colors.background};
 	}
 
 	@media only screen and (max-width: 360px) {
@@ -195,6 +195,6 @@ export const BackBtn = styled(Link)`
 	:focus,
 	:active {
 		transition: all 0.15s ease-in-out;
-		color: var(--black);
+		color: ${(props) => props.theme.colors.background};
 	}
 `;

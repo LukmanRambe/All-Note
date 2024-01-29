@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import { Button } from '../../../../styles/CreateButton.styles';
+import { LanguageContext } from '../../../context/LanguageContext';
 
 const CreateButton = () => {
-	return <Button to='/create'>Create a New Note</Button>;
+	const { languageSets } = useContext(LanguageContext);
+
+	return <Button to='/create'>{languageSets.header.createButton}</Button>;
 };
 
 export default CreateButton;

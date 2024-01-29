@@ -9,17 +9,18 @@ export const Content = styled.form`
 	width: 20rem;
 	display: flex;
 	justify-content: space-between;
-	border: 2px solid var(--grey);
 	align-items: center;
+	border: 2px solid ${(props) => props.theme.colors['input-border']};
+	background: ${(props) => props.theme.colors['input-background']};
 	border-radius: 0.4rem;
 
 	:focus-within {
-		outline: 0;
+		outline: none;
 		transition: all 0.15s ease-in-out;
-		border: 2px solid var(--black);
+		border: 2px solid ${(props) => props.theme.colors['input-border-active']};
 
 		.search-icon {
-			color: var(--black);
+			color: ${(props) => props.theme.colors['input-border-active']};
 		}
 	}
 
@@ -34,6 +35,8 @@ export const Input = styled.input`
 	margin: 0;
 	border: 2px solid transparent;
 	border-radius: inherit;
+	color: ${(props) => props.theme.colors['input-text']};
+	background: ${(props) => props.theme.colors['input-background']};
 
 	:focus,
 	:active {
@@ -44,7 +47,7 @@ export const Input = styled.input`
 
 export const SearchIcon = styled.button`
 	cursor: pointer;
-	color: var(--grey);
+	color: ${(props) => props.theme.colors['input-border']};
 	transform: translateX(-1px);
 	background: transparent;
 	font-size: 1.05rem;

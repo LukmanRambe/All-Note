@@ -19,7 +19,7 @@ export const Content = styled.article`
 `;
 
 export const Warn = styled.div`
-	background: var(--white);
+	background: ${(props) => props.theme.colors['card-background']};
 	border-radius: 0.4rem;
 	padding: 1.5rem 5rem;
 	display: flex;
@@ -44,8 +44,8 @@ export const Copywrite = styled.article`
 	text-align: center;
 
 	.icon {
-		color: #f8bb86;
-		border: 5px solid #f8bb86;
+		color: var(--yellow);
+		border: 5px solid var(--yellow);
 		border-radius: 100%;
 		padding: 1.6rem 2.5rem;
 		font-size: 2.25rem;
@@ -59,13 +59,13 @@ export const Copywrite = styled.article`
 		gap: 1rem;
 
 		h1 {
-			color: #595959;
+			color: ${(props) => props.theme.colors['card-text']};
 			font-weight: 700;
 			font-size: 1.5rem;
 		}
 
 		p {
-			color: #545454;
+			color: ${(props) => props.theme.colors['card-text']};
 		}
 	}
 `;
@@ -78,15 +78,14 @@ export const ActionButtons = styled.article`
 export const CancelButton = styled.button`
 	cursor: pointer;
 	padding: 0.6rem 2rem;
-	color: var(--white);
-	border-radius: 0.4rem;
 	color: var(--light-blue);
+	border-radius: 0.4rem;
 	background: transparent;
 	font-size: 0.9rem;
 	font-weight: 700;
 	letter-spacing: 0.05em;
 	border: none;
-	width: 100%;
+	width: fit-content;
 
 	:hover,
 	:focus,
@@ -103,15 +102,14 @@ export const CancelButton = styled.button`
 
 export const DeleteButton = styled.button`
 	cursor: pointer;
-	padding: 0.6rem 2rem;
-	color: var(--white);
+	padding: 0.6rem 3rem;
 	border-radius: 0.4rem;
-	color: var(--white);
-	background: var(--red);
+	color: ${(props) => props.theme.colors['delete-button-text']};
+	background: ${(props) => props.theme.colors['delete-button-background']};
 	font-size: 0.9rem;
 	font-weight: 700;
 	letter-spacing: 0.05em;
-	border: 2px solid transparent;
+	border: 2px solid var(--red);
 	width: 100%;
 
 	:hover,
@@ -119,8 +117,8 @@ export const DeleteButton = styled.button`
 	:active {
 		outline: 0;
 		transition: all 0.15s ease-in-out;
-		color: var(--red);
-		background: var(--white);
+		color: ${(props) => props.theme.colors['delete-button-text-hover']};
+		background: ${(props) => props.theme.colors['delete-button-background-hover']};
 		border: 2px solid var(--red);
 	}
 

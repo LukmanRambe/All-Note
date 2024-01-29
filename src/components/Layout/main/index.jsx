@@ -1,20 +1,16 @@
 import { useEffect, useState } from 'react';
 
-import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 
-import BackToTop from '../artifacts/buttons/BackToTop';
-import DeleteNoteModal from '../artifacts/modals/DeleteNoteModal';
+import BackToTop from '../../artifacts/buttons/BackToTop';
+import DeleteNoteModal from '../../artifacts/modals/DeleteNoteModal';
 import Navbar from './Navbar';
 
-import GlobalStyle from '../../GlobalStyles';
-import { categories, getAllNotes } from '../../utils/data';
+import GlobalStyle from '../../../GlobalStyles';
+import { categories } from '../../../utils/data';
 
 const Layout = () => {
-	const navigate = useNavigate();
-	const { pathname } = useLocation();
-
-	const [notes, setNotes] = useState(() => getAllNotes());
-	const [searchResults, setSearchResults] = useState(notes);
+	const [searchResults, setSearchResults] = useState([]);
 	const [category, setCategory] = useState(categories[0]);
 	const [noteId, setNoteId] = useState('');
 	const [showBackToTop, setShowBackToTop] = useState(false);
@@ -24,28 +20,6 @@ const Layout = () => {
 	});
 	const [isLoading, setIsLoading] = useState(true);
 	const [searchParams, setSearchParams] = useSearchParams();
-
-	const changeArchiveStatus = (_, id) => {
-		setNotes((prevState) => {
-			const newItem = prevState.map((item) => {
-				return item.id === id ? { ...item, archived: !item.archived } : item;
-			});
-
-			return newItem;
-		});
-	};
-
-	const deleteNote = (e, id) => {
-		setNotes((prevState) => {
-			const newNotes = prevState.filter((note) => note.id !== id);
-
-			return newNotes;
-		});
-
-		if (!['/', '/archive'].includes(pathname) || searchParams.get('search')?.length === 0) {
-			navigate('/');
-		}
-	};
 
 	useEffect(() => {
 		window.addEventListener('scroll', () => {
@@ -64,8 +38,6 @@ const Layout = () => {
 			<main>
 				<Outlet
 					context={{
-						notes,
-						setNotes,
 						category,
 						setCategory,
 						setIsModalShown,
@@ -74,7 +46,6 @@ const Layout = () => {
 						setIsLoading,
 						searchParams,
 						setSearchParams,
-						changeArchiveStatus,
 						searchResults,
 						setSearchResults,
 					}}
@@ -86,8 +57,8 @@ const Layout = () => {
 					<DeleteNoteModal
 						noteId={noteId}
 						setNoteId={setNoteId}
-						deleteNote={deleteNote}
 						setIsModalShown={setIsModalShown}
+						searchParams={searchParams}
 					/>
 				)}
 			</main>

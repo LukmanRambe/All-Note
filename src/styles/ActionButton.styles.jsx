@@ -3,12 +3,10 @@ import styled from 'styled-components';
 export const Button = styled.button`
 	cursor: pointer;
 	padding: 0.6rem 1.5rem;
-	color: var(--white);
 	border-radius: 0.4rem;
 	font-size: 1rem;
 	font-weight: 700;
 	letter-spacing: 0.05em;
-	border: 2px solid transparent;
 	width: 100%;
 
 	:hover,
@@ -19,25 +17,29 @@ export const Button = styled.button`
 	}
 
 	&.activate {
-		background: var(--green);
+		color: ${(props) => props.theme.colors['activate-button-text']};
+		background: ${(props) => props.theme.colors['activate-button-background']};
+		border: 2px solid var(--green);
 
 		:hover,
 		:focus,
 		:active {
-			color: var(--green);
-			background: var(--white);
+			color: ${(props) => props.theme.colors['activate-button-text-hover']};
+			background: ${(props) => props.theme.colors['activate-button-background-hover']};
 			border: 2px solid var(--green);
 		}
 	}
 
 	&.archive {
-		background: var(--yellow);
+		color: ${(props) => props.theme.colors['archive-button-text']};
+		background: ${(props) => props.theme.colors['archive-button-background']};
+		border: 2px solid var(--yellow);
 
 		:hover,
 		:focus,
 		:active {
-			color: var(--yellow);
-			background: var(--white);
+			color: ${(props) => props.theme.colors['archive-button-text-hover']};
+			background: ${(props) => props.theme.colors['archive-button-background-hover']};
 			border: 2px solid var(--yellow);
 		}
 	}

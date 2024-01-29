@@ -10,11 +10,15 @@ import {
 	NoteTitle,
 } from '../../../styles/NoteCard.styles';
 
+import { useContext } from 'react';
 import { formatDate } from '../../../utils/formatDate';
 import ActionButton from '../../artifacts/buttons/ActionButton';
 import DeleteButton from '../../artifacts/buttons/DeleteButton';
+import { LanguageContext } from '../../context/LanguageContext';
 
-const NoteCard = ({ id, title, createdAt, body, archived, setNoteId, setIsModalShown, changeArchiveStatus }) => {
+const NoteCard = ({ id, title, createdAt, body, archived, setNoteId, setIsModalShown }) => {
+	const { currentLanguage } = useContext(LanguageContext);
+
 	return (
 		<Note key={id} id={id}>
 			<NoteDetail>
@@ -23,7 +27,7 @@ const NoteCard = ({ id, title, createdAt, body, archived, setNoteId, setIsModalS
 						<NoteTitle to={`/detail/${id}`} title={`Note Detail - ${title}`}>
 							{title}
 						</NoteTitle>
-						<CreatedAt>{formatDate(createdAt)}</CreatedAt>
+						<CreatedAt>{formatDate(createdAt, currentLanguage)}</CreatedAt>
 					</div>
 				</NoteDetailHeader>
 
@@ -31,12 +35,7 @@ const NoteCard = ({ id, title, createdAt, body, archived, setNoteId, setIsModalS
 			</NoteDetail>
 
 			<Actions>
-				<ActionButton
-					id={id}
-					archived={archived}
-					text={archived ? 'Activate' : 'Archive'}
-					changeArchiveStatus={changeArchiveStatus}
-				/>
+				<ActionButton id={id} archived={archived} text={archived ? 'Activate' : 'Archive'} />
 
 				<DeleteButton noteId={id} text='Delete' setIsModalShown={setIsModalShown} setNoteId={setNoteId} />
 			</Actions>
@@ -52,7 +51,6 @@ NoteCard.propTypes = {
 	archived: PropTypes.bool,
 	setNoteId: PropTypes.func,
 	setIsModalShown: PropTypes.func,
-	changeArchiveStatus: PropTypes.func,
 };
 
 export default NoteCard;

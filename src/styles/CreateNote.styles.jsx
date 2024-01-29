@@ -41,7 +41,7 @@ export const Form = styled.form`
 	position: relative;
 	flex-direction: column;
 	align-self: center;
-	background: var(--white);
+	background: ${(props) => props.theme.colors.background};
 	border-radius: 0.4rem;
 	width: 100%;
 	margin-top: 2rem;
@@ -53,6 +53,7 @@ export const Title = styled.h2`
 	margin-bottom: 0.5rem;
 	font-weight: 700;
 	text-align: center;
+	color: ${(props) => props.theme.colors.text};
 
 	@media only screen and (max-width: 360px) {
 		font-size: 1.4rem;
@@ -70,6 +71,7 @@ export const Label = styled.h5`
 	font-size: 1rem;
 	align-self: flex-start;
 	margin-bottom: 0.3rem;
+	color: ${(props) => props.theme.colors.text};
 
 	@media only screen and (max-width: 360px) {
 		font-size: 0.9rem;
@@ -80,13 +82,15 @@ export const Input = styled.input`
 	width: 100%;
 	padding: 0.5rem;
 	border-radius: 0.4rem;
-	border: 2px solid var(--grey);
+	color: ${(props) => props.theme.colors.text};
+	background: ${(props) => props.theme.colors['input-background']};
+	border: 2px solid ${(props) => props.theme.colors['input-border']};
 
 	:focus,
 	:active {
 		outline: none;
 		transition: all 0.15s ease-in-out;
-		border: 2px solid var(--black);
+		border: 2px solid ${(props) => props.theme.colors['input-border-active']};
 	}
 `;
 
@@ -108,12 +112,15 @@ export const Textarea = styled.textarea`
 	padding: 0.5rem;
 	border-radius: 0.4rem;
 	resize: none;
+	color: ${(props) => props.theme.colors.text};
+	background: ${(props) => props.theme.colors['input-background']};
+	border: 2px solid ${(props) => props.theme.colors['input-border']};
 
 	:focus,
 	:active {
 		outline: none;
 		transition: all 0.15s ease-in-out;
-		border: 2px solid var(--black);
+		border: 2px solid ${(props) => props.theme.colors['input-border-active']};
 	}
 
 	@media only screen and (max-width: 360px) {
@@ -128,8 +135,8 @@ export const SubmitBtn = styled.button`
 	border-radius: 0.4rem;
 	margin-top: 1.5rem;
 	font-size: 1rem;
-	color: var(--white);
-	background: var(--black);
+	color: ${(props) => props.theme.colors['button-text']};
+	background: ${(props) => props.theme.colors['button-background']};
 	border: 2px solid transparent;
 	font-weight: 700;
 
@@ -137,9 +144,9 @@ export const SubmitBtn = styled.button`
 	:active,
 	:focus {
 		transition: all 0.15s ease-in-out;
-		color: var(--black);
-		background: var(--white);
-		border: 2px solid var(--black);
+		color: ${(props) => props.theme.colors['button-text-hover']};
+		background: ${(props) => props.theme.colors['button-background-hover']};
+		border: 2px solid ${(props) => props.theme.colors['button-background']};
 	}
 
 	@media only screen and (max-width: 360px) {
@@ -158,6 +165,6 @@ export const BackBtn = styled.span`
 	:focus,
 	:active {
 		transition: all 0.15s ease-in-out;
-		color: var(--black);
+		color: var(--grey);
 	}
 `;

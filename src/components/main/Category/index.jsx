@@ -3,9 +3,12 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { Content, Option, Wrapper } from '../../../styles/Category.styles';
 
+import { useContext } from 'react';
 import { categories } from '../../../utils/data';
+import { LanguageContext } from '../../context/LanguageContext';
 
 const Category = ({ setCategory }) => {
+	const { languageSets } = useContext(LanguageContext);
 	const { pathname } = useLocation();
 	const [searchParams] = useSearchParams();
 	const search = searchParams.get('search');
@@ -30,7 +33,7 @@ const Category = ({ setCategory }) => {
 									  }
 							}
 							onClick={() => setCategory({ id, path, archived, text })}>
-							{text}
+							{archived ? languageSets.category.archived : languageSets.category.active}
 						</Option>
 					);
 				})}
