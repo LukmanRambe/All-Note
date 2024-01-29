@@ -1,9 +1,7 @@
-// Styling
-import { Wrapper, Content } from './BackToTop.styles';
-
-// Component
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { Content, Wrapper } from '../../../../styles/BackToTop.styles';
 
 const BackToTop = () => {
 	const handleClick = () => {

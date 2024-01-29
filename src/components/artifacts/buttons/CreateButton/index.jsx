@@ -1,16 +1,11 @@
-// Styling
-import { Button } from './CreateButton.styles';
+import { useContext } from 'react';
+import { Button } from '../../../../styles/CreateButton.styles';
+import { LanguageContext } from '../../../context/LanguageContext';
 
-const CreateButton = ({ text, setIsModalShown }) => {
-	const handleOpenModal = () => {
-		setIsModalShown({ value: true, type: 'create' });
-	};
+const CreateButton = () => {
+	const { languageSets } = useContext(LanguageContext);
 
-	return (
-		<Button type='button' onClick={handleOpenModal}>
-			{text}
-		</Button>
-	);
+	return <Button to='/create'>{languageSets.header.createButton}</Button>;
 };
 
 export default CreateButton;

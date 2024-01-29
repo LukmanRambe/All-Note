@@ -1,19 +1,39 @@
-// Component
+import { faExclamation, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 
-// Styling
-import { Wrapper, Content, Warn, Copywrite, ActionButtons, CancelButton, DeleteButton } from './DeleteNoteModal.styles';
+import { useLocation, useNavigate } from 'react-router-dom';
+import {
+	ActionButtons,
+	CancelButton,
+	Content,
+	Copywrite,
+	DeleteButton,
+	Warn,
+	Wrapper,
+} from '../../../../styles/DeleteNoteModal.styles';
+import { deleteNote } from '../../../../utils/data';
 
-const DeleteNoteModal = ({ noteId, setNoteId, setIsModalShown, deleteNote }) => {
+const DeleteNoteModal = ({ noteId, setNoteId, searchParams, setIsModalShown }) => {
+	const navigate = useNavigate();
+	const { pathname } = useLocation();
+
 	const handleCloseModal = () => {
 		setNoteId('');
 		setIsModalShown({ value: false, type: '' });
 	};
 
-	const handleDeleteNote = (e) => {
-		deleteNote(e, noteId);
-		handleCloseModal();
+	const handleDeleteNote = () => {
+		deleteNote(noteId).then((response) => {
+			if (!response.error) {
+				handleCloseModal();
+
+				if (!['/', '/archive'].includes(pathname) || searchParams.get('search')?.length === 0) {
+					return navigate('/');
+				}
+
+				navigate(0);
+			}
+		});
 	};
 
 	return (
@@ -31,7 +51,10 @@ const DeleteNoteModal = ({ noteId, setNoteId, setIsModalShown, deleteNote }) => 
 
 					<ActionButtons>
 						<CancelButton onClick={handleCloseModal}>Cancel</CancelButton>
-						<DeleteButton onClick={handleDeleteNote}>Delete</DeleteButton>
+
+						<DeleteButton onClick={handleDeleteNote}>
+							<FontAwesomeIcon icon={faTrashAlt} className='icon' />
+						</DeleteButton>
 					</ActionButtons>
 				</Warn>
 			</Content>
