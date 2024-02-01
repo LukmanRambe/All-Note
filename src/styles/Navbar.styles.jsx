@@ -50,10 +50,15 @@ export const Text = styled(Link)`
 `;
 
 export const Username = styled.span`
+	display: block;
 	font-size: 1.2rem;
 	font-weight: 600;
 	letter-spacing: 0.1rem;
 	margin-right: 2rem;
+
+	@media only screen and (max-width: 600px) {
+		display: none;
+	}
 `;
 
 export const ToggleTheme = styled.button`
@@ -71,6 +76,10 @@ export const ToggleTheme = styled.button`
 		background: ${(props) => props.theme.colors['navbar-icon-background-hover']};
 		transition: all ease-in-out 0.15s;
 	}
+
+	@media only screen and (max-width: 600px) {
+		display: none;
+	}
 `;
 
 export const ChangeLanguage = styled.button`
@@ -87,6 +96,10 @@ export const ChangeLanguage = styled.button`
 		color: ${(props) => props.theme.colors['navbar-text']};
 		background: ${(props) => props.theme.colors['navbar-icon-background-hover']};
 		transition: all ease-in-out 0.15s;
+	}
+
+	@media only screen and (max-width: 600px) {
+		display: none;
 	}
 `;
 

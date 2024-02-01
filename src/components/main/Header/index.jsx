@@ -3,9 +3,16 @@ import PropTypes from 'prop-types';
 import CreateButton from '../../artifacts/buttons/CreateButton';
 import SearchNotes from '../SearchNotes';
 
-import { Wrapper } from '../../../styles/Header.styles';
+import { useContext } from 'react';
+import { Username, Wrapper } from '../../../styles/Header.styles';
+import ToggleButtons from '../../Layout/auth/ToggleButtons';
+import { AuthContext } from '../../context/AuthContext';
+import { LanguageContext } from '../../context/LanguageContext';
 
 const Header = ({ searchParams, setSearchParams, setIsLoading, handleSearch }) => {
+	const { user } = useContext(AuthContext);
+	const { languageSets } = useContext(LanguageContext);
+
 	return (
 		<Wrapper>
 			<CreateButton />
@@ -15,6 +22,12 @@ const Header = ({ searchParams, setSearchParams, setIsLoading, handleSearch }) =
 				setIsLoading={setIsLoading}
 				handleSearch={handleSearch}
 			/>
+
+			<ToggleButtons className='main' />
+
+			<Username>
+				{languageSets.navbar.username}, {user?.name}!
+			</Username>
 		</Wrapper>
 	);
 };

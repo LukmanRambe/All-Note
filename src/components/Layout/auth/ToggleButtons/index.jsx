@@ -8,7 +8,7 @@ import { faLanguage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeLanguage, ToggleTheme, Wrapper } from '../../../../styles/ToggleButtons.styles';
 
-const ToggleButtons = () => {
+const ToggleButtons = ({ className }) => {
 	const { languageSets, setCurrentLanguage } = useContext(LanguageContext);
 	const { currentTheme, setCurrentTheme } = useContext(ThemeContext);
 
@@ -21,7 +21,7 @@ const ToggleButtons = () => {
 	};
 
 	return (
-		<Wrapper>
+		<Wrapper className={className}>
 			<ToggleTheme type='button' onClick={handleToggleTheme} title={languageSets.navbar.title.toggleTheme}>
 				{currentTheme === 'light' ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
 			</ToggleTheme>

@@ -5,13 +5,23 @@ export const Wrapper = styled.article`
 	display: flex;
 	align-items: center;
 	justify-content: end;
-	top: 2rem;
+	top: 5rem;
 	right: 2rem;
 	gap: 1rem;
+
+	&.main {
+		display: none;
+	}
 
 	@media only screen and (max-width: 600px) {
 		top: 1rem;
 		right: 1rem;
+
+		&.main {
+			position: relative;
+			display: flex;
+			inset: 0;
+		}
 	}
 `;
 
