@@ -12,6 +12,7 @@ export const Button = styled(Link)`
 	border-radius: 0.4rem;
 	border: 2px solid transparent;
 	text-decoration: none;
+	text-align: center;
 
 	:hover,
 	:active,

@@ -19,8 +19,8 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
 	cursor: pointer;
 	padding: 0.9rem 1.1rem;
-	color: ${(props) => props.theme.colors.color};
-	background: ${(props) => props.theme.colors.background};
+	color: ${(props) => props.theme.colors.background};
+	background: ${(props) => props.theme.colors.text};
 	border: 2px solid transparent;
 	border-radius: 50%;
 
@@ -32,8 +32,8 @@ export const Content = styled.div`
 	:active,
 	:focus {
 		transition: all 0.15s ease-in-out;
-		color: ${(props) => props.theme.colors.background};
-		background: ${(props) => props.theme.colors.color};
-		border: 2px solid ${(props) => props.theme.colors.background};
+		color: ${(props) => props.theme.colors.text};
+		background: ${(props) => props.theme.colors.background};
+		border: 2px solid ${(props) => props.theme.colors.text};
 	}
 `;
