@@ -5,7 +5,7 @@ export const Wrapper = styled.article`
 	display: flex;
 	align-items: center;
 	justify-content: end;
-	top: 5rem;
+	top: 2rem;
 	right: 2rem;
 	gap: 1rem;
 
