@@ -55,6 +55,8 @@ const AuthContextProvider = ({ children }) => {
 				status: responseJson.status,
 				message: responseJson.message,
 			});
+
+			return;
 		}
 
 		setResponse({
@@ -81,6 +83,8 @@ const AuthContextProvider = ({ children }) => {
 				status: responseJson.status,
 				message: responseJson.message,
 			});
+
+			return;
 		}
 
 		setIsAuth(true);
@@ -125,12 +129,12 @@ const AuthContextProvider = ({ children }) => {
 
 			navigate('/auth/login');
 		} else {
+			getUserLogged();
+
 			if (pathname === '/auth/login' || pathname === '/auth/register') {
 				navigate('/');
 			}
 		}
-
-		getUserLogged();
 	}, [navigate, pathname, isAuth]);
 
 	const value = {
